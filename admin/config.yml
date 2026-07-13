@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+# ============================================================
+#  Configuration Sveltia CMS — galerie « Jour & Nuit »
+#  Le CMS écrit directement dans le dépôt GitHub : chaque
+#  enregistrement est un commit, qui redéclenche le déploiement.
+# ============================================================
+
+backend:
+  name: github
+  repo: YoannCHVR/gite_marie_loire # PERSO : propriétaire/dépôt
+  branch: main
+  # Connexion par jeton d'accès personnel (« Sign In with Token ») : rien à installer.
+  # Pour une connexion par bouton « Se connecter avec GitHub », déployez
+  # https://github.com/sveltia/sveltia-cms-auth sur Cloudflare Workers,
+  # puis décommentez la ligne suivante avec l'URL obtenue :
+  # base_url: https://votre-authenticator.workers.dev
+
+# Attention : ces deux chemins ne désignent pas la même chose.
+#  - media_folder  : où les images sont rangées DANS LE DÉPÔT (le site vit dans un sous-dossier).
+#  - public_folder : sous quel chemin elles sont servies DANS L'URL du site en ligne.
+media_folder: "/Site Marie de la Loire/assets/img/gallery"
+public_folder: "/assets/img/gallery"
+
+# La galerie est un fichier unique : c'est le cas d'usage d'un « singleton ».
+singletons:
+  - name: gallery
+    label: Galerie photos
+    file: "Site Marie de la Loire/gallery.json"
+    icon: photo_library
+    fields:
+      - name: day
+        label: Photos de jour
+        label_singular: Photo de jour
+        widget: list
+        collapsed: true
+        summary: "{{cap}}"
+        thumbnail: src
+        fields:
+          - { name: src, label: Photo, widget: image }
+          - { name: cap, label: Titre affiché, widget: string }
+
+      - name: night
+        label: Photos de nuit
+        label_singular: Photo de nuit
+        widget: list
+        collapsed: true
+        summary: "{{cap}}"
+        thumbnail: src
+        fields:
+          - { name: src, label: Photo, widget: image }
+          - { name: cap, label: Titre affiché, widget: string }

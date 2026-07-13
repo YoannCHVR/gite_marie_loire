@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gîte Marie de la Loire — Maison de charme entre Saumur et Chinon</title>
+<meta name="description" content="Gîte Marie de la Loire à Varennes-sur-Loire : maison familiale 155 m² climatisée, 6 chambres, spa, préau, jardin clos. Idéale 12 à 14 personnes, entre Saumur et Chinon.">
+
+<!-- ============================================================
+     GÎTE MARIE DE LA LOIRE — SITE VITRINE
+     ------------------------------------------------------------
+     >>> ZONES À PERSONNALISER (chercher le mot "PERSO") :
+       1. Liens AIRBNB et BOOKING            -> var BOOKING_LINKS
+       2. Lien GOOGLE BUSINESS PROFILE       -> var GOOGLE_BUSINESS
+       3. Coordonnées GPS exactes + carte    -> section #acces
+       4. Liens vidéos-tuto des notices      -> section #notices
+       5. Photos : remplacer les fichiers dans /assets/img/
+     Tout le reste est modifiable directement dans ce fichier.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+/* Direction artistique reprise du Livret d'Accueil :
+   blanc dominant, sable #e9e2d7, noir pur, Poppins Bold capitales,
+   cursive en attaque de titre, cercles sable en fond perdu. */
+:root{
+  --brand:#0e0e0e; --brand-dark:#000000; --sand:#e9e2d7; --cream:#f5f1ea;
+  --ink:#0e0e0e; --muted:#6b6b66; --line:#e2dbcf; --grey:#d9d9d9; --white:#ffffff;
+  --serif:'Poppins',system-ui,sans-serif; --sans:'Poppins',system-ui,sans-serif;
+  --script:'Sacramento',cursive;
+  --maxw:1180px; --radius:16px; --shadow:0 18px 48px rgba(0,0,0,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.05;letter-spacing:-.01em}
+h3{text-transform:uppercase;letter-spacing:.02em;line-height:1.2}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+section{padding:112px 0}
+
+/* Attaque de titre : la cursive chevauche le titre capitales, comme dans le livret */
+.eyebrow{font-family:var(--script);text-transform:none;letter-spacing:0;
+  font-size:2.3rem;line-height:1;color:inherit;font-weight:400;
+  display:inline-block;transform:rotate(-3deg);transform-origin:left bottom;
+  margin:0 0 -6px 14px;position:relative;z-index:1}
+.sec-title{font-size:clamp(2.1rem,4.8vw,3.5rem);text-transform:uppercase;color:inherit;margin-bottom:0}
+/* Filet noir sous le titre — page 4 du livret. currentColor pour les sections sombres. */
+.sec-title:after{content:"";display:block;height:2px;background:currentColor;margin-top:24px}
+.sec-intro{color:var(--muted);margin:26px 0 56px;font-size:1.02rem;font-weight:300}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:50px;font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1.5px solid transparent;transition:.25s}
+.btn-primary{background:var(--brand-dark);color:#fff}
+.btn-primary:hover{background:#fff;color:var(--ink);border-color:var(--ink)}
+.btn-ghost{background:transparent;border-color:#fff;color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#fff;color:var(--ink);border-color:var(--ink)}
+.btn-sm{padding:9px 17px;font-size:.7rem;letter-spacing:.07em}
+.btn-out{background:#fff;border-color:var(--ink);color:var(--ink)}
+.btn-out:hover{background:var(--ink);color:#fff}
+
+/* ICONES — jeu unique, sprite <symbol> en haut du <body> */
+.i{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav.scrolled-bg{}
+header.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(8px);box-shadow:0 2px 18px rgba(0,0,0,.06)}
+.brand{font-family:var(--serif);font-size:1.15rem;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;color:#fff;transition:.3s}
+.brand small{display:block;font-family:var(--sans);font-size:.58rem;letter-spacing:3px;text-transform:uppercase;font-weight:400;opacity:.85}
+header.scrolled .brand{color:var(--ink)}
+.menu{display:flex;gap:26px;align-items:center}
+.menu a{font-size:.84rem;letter-spacing:1px;color:#fff;font-weight:400;transition:.2s;text-transform:uppercase}
+header.scrolled .menu a:not(.btn){color:var(--ink)}
+.menu a:hover{color:var(--sand)}
+.nav-cta{display:flex;align-items:center;gap:8px;margin-left:6px}
+.menu .btn-primary{color:#fff}
+.menu .btn-out{color:var(--ink)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;padding:8px}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s}
+header.scrolled .burger span{background:var(--ink)}
+
+/* HERO */
+.hero{height:100vh;min-height:620px;position:relative;display:flex;align-items:center;color:#fff;
+  background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.5) 42%,rgba(0,0,0,.18) 75%),
+    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.45)),url('assets/img/hero.jpg') center/cover no-repeat fixed}
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:0 22px;width:100%}
+.hero h1{font-size:clamp(2.6rem,7.4vw,5.4rem);color:#fff;margin-bottom:10px;font-weight:700;text-transform:uppercase;line-height:.92}
+.hero .tag{font-size:1.05rem;font-weight:300;margin-bottom:26px;opacity:.95;max-width:640px}
+.hero .loc{font-family:var(--script);font-size:2.4rem;line-height:1;letter-spacing:0;text-transform:none;
+  margin:0 0 -4px 10px;color:#fff;display:inline-block;transform:rotate(-3deg);transform-origin:left bottom}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+.hero-badges span{border:1px solid rgba(255,255,255,.55);border-radius:50px;padding:7px 16px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.8;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* KEY FEATURES STRIP */
+.strip{background:var(--white);border-bottom:1px solid var(--line)}
+.strip .wrap{padding-top:38px;padding-bottom:38px}
+/* gap:1px sur fond --line = filets d'1px entre les cellules.
+   Le nb de colonnes doit toujours diviser 10, sinon les pistes vides se colorent. */
+.feat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line)}
+.feat{display:flex;align-items:center;gap:13px;background:var(--white);padding:20px 16px;transition:background .25s}
+.feat:hover{background:#faf8f4}
+.feat .ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--sand);color:var(--brand-dark);transition:.25s}
+.feat:hover .ic{background:var(--brand);color:#fff}
+.feat .ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.feat b{display:block;font-weight:500;font-size:.93rem;line-height:1.3}
+.feat small{display:block;color:var(--muted);font-size:.76rem;line-height:1.35}
+
+/* Cercle sable en fond perdu — signature des pages du livret */
+.blob{position:absolute;border-radius:50%;background:var(--white);pointer-events:none;z-index:0}
+.blob-ring{background:transparent;border:1.5px solid var(--ink)}
+.blob-a{width:360px;height:360px;top:-110px;right:-90px}
+.blob-b{width:250px;height:250px;top:-42px;right:20px}
+.blob-c{width:300px;height:300px;bottom:-130px;left:-120px}
+#maison,#plan{position:relative;overflow:hidden}
+/* Alternance des fonds clairs :
+   bandeau(blanc) maison(casse) equipements(blanc) galerie(casse)
+   video(noir) plan(casse) notices(blanc) alentours(sable) regles(noir) acces(blanc) */
+#maison,#galerie,#plan{background:var(--cream)}
+#maison .wrap,#plan .wrap{position:relative;z-index:1}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.about p{margin-bottom:16px;color:#4a4a44}
+.about .lead{font-size:1.2rem;font-weight:500;color:var(--brand-dark);line-height:1.5}
+.about-img{position:relative}
+.about-img img{border-radius:var(--radius);box-shadow:var(--shadow)}
+.about-img .cap{position:absolute;bottom:-18px;right:-18px;background:var(--brand);color:#fff;padding:18px 22px;border-radius:var(--radius);box-shadow:var(--shadow);text-align:center}
+.about-img .cap b{font-size:1.8rem;font-family:var(--serif)}
+
+/* EQUIPEMENTS */
+.equip{background:var(--white)}
+.equip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.ecard{background:var(--sand);border-radius:var(--radius);padding:28px;border:1px solid var(--line)}
+.ecard h3{font-size:1.05rem;color:var(--brand-dark);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.ecard h3 .i,.acard h3 .i{width:20px;height:20px}
+.ecard ul{list-style:none}
+.ecard li{padding:5px 0 5px 22px;position:relative;font-size:.92rem;color:#4a4a44}
+.ecard li:before{content:"›";position:absolute;left:4px;color:var(--brand);font-weight:600}
+
+/* GALLERY */
+.gtabs{display:flex;gap:12px;margin-bottom:26px}
+.gtab{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:50px;border:1.5px solid var(--line);background:#fff;cursor:pointer;font-family:var(--sans);font-size:.88rem;letter-spacing:.5px;transition:.2s}
+.gtab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid-g{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gitem{position:relative;overflow:hidden;border-radius:10px;cursor:pointer;aspect-ratio:4/3;background:#ddd}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.gitem:hover img{transform:scale(1.07)}
+.gitem .lbl{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 10px;color:#fff;font-size:.8rem;background:linear-gradient(transparent,rgba(0,0,0,.6));opacity:0;transition:.3s}
+.gitem:hover .lbl{opacity:1}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;background:rgba(20,20,18,.94);z-index:200;display:none;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb img{max-width:90vw;max-height:82vh;border-radius:8px}
+.lb .cap{position:absolute;bottom:28px;left:0;right:0;text-align:center;color:#fff;font-size:.9rem;letter-spacing:.5px}
+.lb button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;width:52px;height:52px;border-radius:50%;font-size:1.6rem;cursor:pointer;transition:.2s}
+.lb button:hover{background:rgba(255,255,255,.28)}
+.lb .close{top:24px;right:24px}
+.lb .prev{left:24px;top:50%;transform:translateY(-50%)}
+.lb .next{right:24px;top:50%;transform:translateY(-50%)}
+
+/* VIDEO */
+.video{background:var(--ink);color:#fff}
+.video .sec-title{color:#fff}
+.video .sec-intro{color:rgba(255,255,255,.7)}
+.video video{width:100%;border-radius:var(--radius);box-shadow:var(--shadow);background:#000}
+
+/* PLAN */
+.plan-grid{display:grid;gap:56px}
+.plan-row{display:grid;grid-template-columns:1.35fr 1fr;gap:44px;align-items:center}
+.plan-row.reverse{grid-template-columns:1fr 1.35fr}
+.plan-row.reverse .floorplan{order:2}
+.floorplan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.plan-caption{font-size:.75rem;color:var(--muted);text-align:center;margin-top:8px}
+.plan-legend{font-size:.92rem;color:#4a4a44}
+.plan-legend h3{font-size:1.15rem;margin:0 0 12px;color:var(--brand-dark)}
+.plan-legend ul{list-style:none;columns:2;gap:18px;margin-top:6px}
+.plan-legend li{padding:4px 0 4px 18px;position:relative}
+.plan-legend li:before{content:"■";position:absolute;left:0;color:var(--brand);font-size:.7rem;top:6px}
+
+/* NOTICES */
+.notices{background:var(--white)}
+.ngrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ncard{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:var(--sand);transition:.25s}
+.ncard:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.ncard .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--white);color:var(--ink);margin-bottom:16px;transition:.25s}
+.ncard .ic .i{width:22px;height:22px}
+.ncard:hover .ic{background:var(--ink);color:#fff}
+.ncard h3{font-size:1.02rem;margin-bottom:8px;color:var(--brand-dark)}
+.ncard p{font-size:.88rem;color:#555;margin-bottom:14px}
+.ncard a{font-size:.8rem;color:var(--brand);font-weight:500;letter-spacing:.5px}
+.ncard a:hover{text-decoration:underline}
+
+/* ALENTOURS */
+.around{background:var(--sand)}
+.acols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:40px}
+.acard{background:#fff;border-radius:var(--radius);padding:26px;border:1px solid var(--line)}
+.acard h3{font-size:1.05rem;color:var(--brand-dark);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.acard .row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+.acard .row:last-child{border:0}
+.acard .row span{color:var(--muted);white-space:nowrap;font-size:.82rem}
+.partners{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+/* Cartes partenaires : photo de fond identifiante + voile sombre, texte en blanc.
+   L'image est passee en variable --bg sur chaque carte. */
+.partner{position:relative;overflow:hidden;isolation:isolate;border-radius:var(--radius);
+  flex:1;min-width:240px;min-height:190px;display:flex;flex-direction:column;justify-content:flex-end;
+  text-align:center;padding:24px 26px;color:#fff;background:#111;transition:.25s}
+.partner:before{content:"";position:absolute;inset:0;z-index:-2;
+  background-image:var(--bg);background-size:cover;background-position:center;transition:transform .6s ease}
+.partner:after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.58) 50%,rgba(0,0,0,.88))}
+.partner:hover{box-shadow:var(--shadow)}
+.partner:hover:before{transform:scale(1.06)}
+.partner b{display:block;font-family:var(--serif);font-weight:700;text-transform:uppercase;font-size:1rem;letter-spacing:.02em;color:#fff}
+.partner small{color:rgba(255,255,255,.82);font-size:.82rem}
+
+/* RULES */
+.rules{background:var(--brand-dark);color:#fff}
+.rules .sec-title{color:#fff}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rule{display:flex;gap:14px;align-items:flex-start}
+.rule .ic{flex:0 0 auto;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff}
+.rule .ic .i{width:20px;height:20px}
+.rule b{display:block;font-size:1.05rem;margin-bottom:2px}
+.rule p{font-size:.86rem;opacity:.85}
+
+/* ACCES */
+.acc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch}
+.acc-info h3{font-size:1.1rem;color:var(--brand-dark);margin:0 0 6px}
+.acc-address{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.acc-address p{margin:0}
+.acc-address .btn{flex-shrink:0}
+.gps{background:#fff;border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:10px;padding:18px 22px;margin:18px 0;font-size:.95rem}
+.gps b{color:var(--brand-dark);letter-spacing:1px}
+.gps .i{width:17px;height:17px;margin-right:4px}
+.acc-info .dist{list-style:none;margin-top:14px}
+.acc-info .dist li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.map-box{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:360px;border:1px solid var(--line)}
+.map-box iframe{width:100%;height:100%;min-height:420px;border:0}
+
+/* RESERVER */
+.book{background:var(--ink);color:#fff;text-align:center}
+.book .sec-title{color:#fff}
+.book-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:30px 0 40px}
+.book-cards{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:760px;margin:0 auto;align-items:center;text-align:left}
+.qr-card{background:#fff;color:var(--ink);border-radius:var(--radius);padding:26px;display:flex;gap:20px;align-items:center}
+.qr-card img{width:120px;height:120px;border-radius:8px}
+.qr-card b{font-family:var(--serif);font-weight:700;text-transform:uppercase;font-size:1rem;letter-spacing:.02em}
+.contact-card{font-size:.95rem}
+.contact-card a{color:var(--sand)}
+.contact-card .line{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.contact-card .line .i{width:17px;height:17px;color:var(--sand)}
+
+/* FOOTER */
+footer{background:#000;color:rgba(255,255,255,.75);padding:50px 0 28px;font-size:.85rem}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:30px}
+footer h4{font-family:var(--serif);font-weight:700;text-transform:uppercase;color:#fff;font-size:1rem;letter-spacing:.02em;margin-bottom:12px}
+footer .fbrand small{letter-spacing:3px;text-transform:uppercase;font-size:.7rem;color:var(--sand)}
+footer a:hover{color:#fff}
+footer ul{list-style:none}
+footer li{padding:3px 0}
+.fbar{border-top:1px solid rgba(255,255,255,.12);padding-top:20px;text-align:center;font-size:.78rem;color:rgba(255,255,255,.5)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .blob-ring{display:none}
+  .blob-a{width:210px;height:210px;top:-80px;right:-80px}
+  .blob-c{width:190px;height:190px;bottom:-90px;left:-90px}
+  .menu{position:fixed;inset:64px 0 auto 0;background:var(--white);flex-direction:column;gap:0;padding:10px 0;transform:translateY(-130%);transition:.3s;box-shadow:0 12px 24px rgba(0,0,0,.1)}
+  .menu.open{transform:translateY(0)}
+  .menu a:not(.btn){color:var(--ink)!important;padding:13px 22px;width:100%;border-bottom:1px solid var(--line)}
+  .nav-cta{flex-direction:column;align-items:stretch;gap:10px;padding:14px 22px;margin:0;width:100%}
+  .nav-cta .btn{justify-content:center;width:100%;padding:12px 17px;font-size:.74rem}
+  .burger{display:flex}
+  .about,.acc-grid,.book-cards{grid-template-columns:1fr}
+  .plan-row,.plan-row.reverse{grid-template-columns:1fr;gap:24px}
+  .plan-row.reverse .floorplan{order:0}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .equip-grid,.ngrid,.acols,.rgrid{grid-template-columns:1fr 1fr}
+  .grid-g{grid-template-columns:repeat(2,1fr)}
+  .about-img .cap{right:14px}
+}
+@media(max-width:560px){
+  section{padding:60px 0}.sec-title{font-size:2rem}
+  .feat-grid{grid-template-columns:1fr}
+  .equip-grid,.ngrid,.acols,.rgrid,.grid-g,.plan-legend ul{grid-template-columns:1fr;columns:1}
+  .hero{background-attachment:scroll}
+}
+</style>
+</head>
+<body>
+
+<!-- Sprite d'icones : un seul jeu, reutilise partout via <use href="#i-xxx"> -->
+<svg class="sprite" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 20v-7.5A2.5 2.5 0 0 1 4.5 10h15a2.5 2.5 0 0 1 2.5 2.5V20"/><path d="M2 17h20"/><path d="M6.5 10V7.5A1.5 1.5 0 0 1 8 6h8a1.5 1.5 0 0 1 1.5 1.5V10"/><path d="M4 20v1.5M20 20v1.5"/></symbol>
+  <symbol id="i-spa" viewBox="0 0 24 24"><path d="M3 12h18v3.5a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 15.5V12z"/><path d="M5.5 20 4.5 22M18.5 20l1 2"/><circle cx="10.5" cy="9" r="1"/><circle cx="14" cy="7.5" r="1"/><circle cx="17.5" cy="9.5" r="1"/></symbol>
+  <symbol id="i-shelter" viewBox="0 0 24 24"><path d="M2.5 10.5 12 4.5l9.5 6"/><path d="M5.5 10.5V20M18.5 10.5V20"/><path d="M2.5 20h19"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2.5v19"/><path d="M4.2 7 19.8 17"/><path d="M19.8 7 4.2 17"/><path d="m9.2 4.6 2.8-2.1 2.8 2.1"/><path d="m9.2 19.4 2.8 2.1 2.8-2.1"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0"/><path d="M5.2 12.4a10.5 10.5 0 0 1 13.6 0"/><path d="M8.5 15.9a6 6 0 0 1 7 0"/><circle cx="12" cy="19.6" r="1"/></symbol>
+  <symbol id="i-boules" viewBox="0 0 24 24"><circle cx="8.5" cy="14.5" r="5.5"/><circle cx="17.5" cy="9.5" r="3.5"/><circle cx="18" cy="18" r="1.6"/></symbol>
+  <symbol id="i-slide" viewBox="0 0 24 24"><path d="M3 20.5h18"/><path d="M5 20.5V7.5M9 20.5V7.5"/><path d="M5 11.5h4M5 15.5h4"/><path d="M9 7.5c.4 6.2 3.2 10.9 10 13"/><path d="M5 7.5h4.6"/></symbol>
+  <symbol id="i-parking" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4.5"/><path d="M9.8 16.5v-9h3.2a2.9 2.9 0 0 1 0 5.8H9.8"/></symbol>
+  <symbol id="i-charger" viewBox="0 0 24 24"><rect x="3.5" y="3" width="10" height="18" rx="2.5"/><path d="M6.5 7h4"/><path d="M13.5 9h2.2a1.8 1.8 0 0 1 1.8 1.8V16a1.75 1.75 0 0 0 3.5 0v-5.5l-2-2"/><path d="M9.5 11 7.8 14.2h2.6L8.7 17.5"/></symbol>
+  <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="5.6" cy="17" r="3.6"/><circle cx="18.4" cy="17" r="3.6"/><circle cx="15.4" cy="5.6" r="1.1"/><path d="M12.2 17V13.4L9 10.6l3.8-2.9 2.2 2.9h2.1"/></symbol>
+  <symbol id="i-pot" viewBox="0 0 24 24"><path d="M7 7.5a5 5 0 0 1 10 0"/><path d="M12 4.6v2.9"/><path d="M2.8 10.5h18.4"/><path d="M4.5 10.5v4.8A4.7 4.7 0 0 0 9.2 20h5.6a4.7 4.7 0 0 0 4.7-4.7v-4.8"/></symbol>
+  <symbol id="i-sofa" viewBox="0 0 24 24"><path d="M5 11.2V7.6A2.6 2.6 0 0 1 7.6 5h8.8A2.6 2.6 0 0 1 19 7.6v3.6"/><path d="M3 13.4a2 2 0 0 1 4 0v2.4h10v-2.4a2 2 0 0 1 4 0V19H3v-5.6z"/><path d="M7 15.8h10"/><path d="M6 19v1.8M18 19v1.8"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24"><path d="M3 12h18v3.5a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 15.5V12z"/><path d="M6.5 12V6.6A2.4 2.4 0 0 1 10.4 4.7"/><path d="M5.5 20 4.5 22M18.5 20l1 2"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M4.6 19.4C4.6 10.6 9.9 4.6 20 4.6c0 10.1-6 15.4-14.8 15.4h-.6z"/><path d="M4.6 19.4C8 15 12 12 16.8 10.2"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.6"/><circle cx="12" cy="12" r="3"/><path d="M12 2.2v2.2M12 19.6v2.2M2.2 12h2.2M19.6 12h2.2M5.1 5.1l1.6 1.6M17.3 17.3l1.6 1.6M18.9 5.1l-1.6 1.6M6.7 17.3l-1.6 1.6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11.2v5"/><circle cx="12" cy="7.9" r=".85"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.6M12 19v2.6M2.4 12H5M19 12h2.6M5.2 5.2 7 7M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.2 14.7A8.6 8.6 0 0 1 9.3 3.8a8.6 8.6 0 1 0 10.9 10.9z"/></symbol>
+  <symbol id="i-thermo" viewBox="0 0 24 24"><path d="M14 14.8V4.6a2.5 2.5 0 0 0-5 0v10.2a4.6 4.6 0 1 0 5 0z"/><path d="M11.5 15.6a1 1 0 1 0 0 .01"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 21.6c3.9 0 6-2.7 6-6 0-4-3-5.4-3-8.9 0 0-2 1.5-2 4 0-2-1.5-3.5-3-5 0 3.5-4 4.5-4 9.9 0 3.3 2.1 6 6 6z"/></symbol>
+  <symbol id="i-dish" viewBox="0 0 24 24"><rect x="4" y="2.6" width="16" height="18.8" rx="2.2"/><path d="M4 7.4h16"/><circle cx="12" cy="14.6" r="4"/><path d="M7 5h.01M9.6 5h.01"/></symbol>
+  <symbol id="i-micro" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.2"/><rect x="5" y="8" width="9.6" height="8" rx="1.2"/><circle cx="18.2" cy="9.2" r=".9"/><path d="M17 12.6h2.4M17 15.4h2.4"/></symbol>
+  <symbol id="i-castle" viewBox="0 0 24 24"><path d="M3 21V9h2.5V6.2h2.6V9h3.8V6.2h2.6V9H21v12H3z"/><path d="M10 21v-4.2a2 2 0 0 1 4 0V21"/><path d="M6.6 12.6h1.6M15.8 12.6h1.6"/></symbol>
+  <symbol id="i-ferris" viewBox="0 0 24 24"><circle cx="12" cy="10" r="7"/><circle cx="12" cy="10" r="1.4"/><path d="M12 3v14M5 10h14M7 5l10 10M17 5 7 15"/><path d="M9 21h6l-3-5.6z"/></symbol>
+  <symbol id="i-wine" viewBox="0 0 24 24"><path d="M7.8 3.2h8.4l-.7 5.6a3.8 3.8 0 0 1-7 0l-.7-5.6z"/><path d="M12 12.6V19"/><path d="M8.4 21h7.2"/></symbol>
+  <symbol id="i-basket" viewBox="0 0 24 24"><path d="M2.6 8.8h18.8"/><path d="M4.4 8.8 5.8 18a2.2 2.2 0 0 0 2.2 1.9h8a2.2 2.2 0 0 0 2.2-1.9l1.4-9.2"/><path d="m9 8.8 2-4.8M15 8.8l-2-4.8"/></symbol>
+  <symbol id="i-cutlery" viewBox="0 0 24 24"><path d="M6 3v7.6a2 2 0 0 0 4 0V3"/><path d="M8 12.6V21"/><path d="M16.6 3c1.6 1.7 2.2 4.1 2.2 6.7 0 1.9-.9 2.9-2.2 2.9V21"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 10.6 12 4l9 6.6V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.4z"/><path d="M9.4 21v-5.8h5.2V21"/></symbol>
+  <symbol id="i-paw" viewBox="0 0 24 24"><circle cx="6.4" cy="10.6" r="1.9"/><circle cx="11" cy="7.4" r="2"/><circle cx="16.2" cy="9" r="1.9"/><circle cx="19.2" cy="13.4" r="1.7"/><path d="M11.4 13.6c2.7 0 4.8 2 4.8 4.2 0 1.5-1.1 2.6-2.6 2.6-1 0-1.4-.5-2.4-.5s-1.4.5-2.4.5c-1.5 0-2.6-1.1-2.6-2.6 0-2.2 2.1-4.2 5.2-4.2z"/></symbol>
+  <symbol id="i-nosmoke" viewBox="0 0 24 24"><rect x="3.2" y="13.2" width="14.6" height="4.2" rx="1.2"/><path d="M13.4 13.2v4.2"/><path d="M15.6 10.4c1.8-1.2 1.8-3 0-4.2"/><path d="M3.6 20.8 20.4 3.9"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path d="M11 4.8 6.4 8.9H3v6.2h3.4L11 19.2V4.8z"/><path d="m15.6 9.6 5 4.8M20.6 9.6l-5 4.8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2.6 20a6.4 6.4 0 0 1 12.8 0"/><path d="M16.2 5.3a3.4 3.4 0 0 1 0 5.4"/><path d="M17.6 14.3A6.4 6.4 0 0 1 21.4 20"/></symbol>
+  <symbol id="i-life" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="m5.6 5.6 3.8 3.8M18.4 5.6l-3.8 3.8M18.4 18.4l-3.8-3.8M5.6 18.4l3.8-3.8"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7-6.1 7-11.4a7 7 0 1 0-14 0c0 5.3 7 11.4 7 11.4z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.7 8.3-2.2 5.2-5.2 2.2 2.2-5.2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.2"/><path d="m3.6 6.6 8.4 6.4 8.4-6.4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.4 2.6 5.4 5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.8z"/></symbol>
+</svg>
+
+
+<!-- ===== NAV ===== -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#accueil" class="brand">Marie de la Loire<small>Gîte · Varennes-sur-Loire</small></a>
+    <nav class="menu" id="menu">
+      <a href="#maison">La maison</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#plan">Plan</a>
+      <a href="#notices">Équipements</a>
+      <a href="#alentours">Alentours</a>
+      <a href="#acces">Accès</a>
+      <span class="nav-cta">
+        <a class="btn btn-primary btn-sm" id="nav-airbnb" target="_blank" rel="noopener"
+           aria-label="Réserver sur Airbnb" title="Réserver sur Airbnb">Airbnb</a>
+        <a class="btn btn-out btn-sm" id="nav-booking" target="_blank" rel="noopener"
+           aria-label="Réserver sur Booking" title="Réserver sur Booking">Booking</a>
+      </span>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="accueil" style="padding:0">
+  <div class="hero-inner">
+    <p class="loc">Entre Saumur &amp; Chinon</p>
+    <h1>Marie de la Loire</h1>
+    <p class="tag">Maison familiale de charme, 155 m² rénovée &amp; climatisée — détente, nature et convivialité au bord de la Loire.</p>
+    <div class="hero-badges">
+      <span>155 m² habitables</span><span>6 chambres</span><span>12 à 14 voyageurs</span>
+      <span>Spa 7 places</span><span>Préau jusqu'à 30 pers.</span><span>Jardin clos 3 000 m²</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" id="cta-airbnb" target="_blank" rel="noopener">Réserver sur Airbnb</a>
+      <a class="btn btn-ghost" id="cta-booking" target="_blank" rel="noopener">Réserver sur Booking</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Découvrir ↓</div>
+</section>
+
+<!-- ===== STRIP ===== -->
+<div class="strip">
+  <div class="wrap">
+    <div class="feat-grid">
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bed"/></svg></div>
+        <div><b>6 chambres</b><small>dont 1 mezzanine</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-spa"/></svg></div>
+        <div><b>Spa / Jacuzzi</b><small>7 places, terrasse</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-shelter"/></svg></div>
+        <div><b>Préau aménagé</b><small>jusqu'à 30 pers.</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-snow"/></svg></div>
+        <div><b>Climatisation</b><small>réversible, par pièce</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-wifi"/></svg></div>
+        <div><b>WiFi fibre</b><small>Orange très haut débit</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-boules"/></svg></div>
+        <div><b>Pétanque</b><small>&amp; ping-pong</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-slide"/></svg></div>
+        <div><b>Aire de jeu</b><small>enfants 3–12 ans</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-parking"/></svg></div>
+        <div><b>2 parkings</b><small>terrain 6 000 m²</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-charger"/></svg></div>
+        <div><b>Borne recharge</b><small>véhicule électrique</small></div>
+      </div>
+
+      <div class="feat">
+        <div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bike"/></svg></div>
+        <div><b>Loire à vélo</b><small>à 3 km</small></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="maison">
+  <span class="blob blob-a"></span>
+  <span class="blob blob-ring blob-b"></span>
+  <div class="wrap about">
+    <div>
+      <p class="eyebrow">À propos de</p>
+      <h2 class="sec-title">La maison</h2>
+      <p class="lead">Bienvenue au gîte Marie de la Loire, une maison familiale de 155 m² rénovée et climatisée, alliant confort moderne et esprit chaleureux.</p>
+      <p>Vous disposez d'une cuisine entièrement équipée, d'un salon, de 6 chambres dont une en mezzanine, de 2 salles de bain et 2 WC, d'une terrasse de 70 m² avec pergola et spa, et d'un préau aménagé de 78 m².</p>
+      <p>Située entre Saumur et Chinon, à proximité de la Loire à vélo, des châteaux de la Loire (Azay-le-Rideau, Rigny-Ussé, Langeais…) et des vignobles (Saumur, Bourgueil, Chinon), la maison est idéale pour les groupes et les rassemblements de famille.</p>
+      <p>Le jardin clos et sécurisé de 3 000 m², arboré et fleuri, s'étend sur une parcelle de 6 000 m² avec deux espaces de stationnement et une borne de recharge électrique.</p>
+      <a href="#notices" class="btn btn-out" style="margin-top:10px">Voir tous les équipements</a>
+    </div>
+    <div class="about-img">
+      <img src="assets/img/facade.jpg" alt="Façade et jardin du gîte Marie de la Loire">
+      <div class="cap"><b>155</b>m² · 12–14 pers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUIPEMENTS ===== -->
+<section class="equip">
+  <div class="wrap">
+    <p class="eyebrow">À votre</p>
+    <h2 class="sec-title">Disposition</h2>
+    <p class="sec-intro">Tout le nécessaire pour un séjour serein, à l'intérieur comme à l'extérieur.</p>
+    <div class="equip-grid">
+      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-pot"/></svg> Cuisine</h3><ul>
+        <li>Plaque de cuisson, four, micro-ondes</li>
+        <li>Réfrigérateur / congélateur connecté</li>
+        <li>Lave-vaisselle, petite cave à vin</li>
+        <li>Bouilloire, cafetière Twist Senséo</li>
+        <li>Vaisselle, verres et couverts complets</li>
+      </ul></div>
+      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-sofa"/></svg> Salon &amp; chambres</h3><ul>
+        <li>Salon avec TV connectée 65"</li>
+        <li>4 chambres en lit 160 cm + TV connectée</li>
+        <li>1 chambre lit 160 cm + 2 lits 90 cm</li>
+        <li>Mezzanine : banquette convertible 140 cm</li>
+        <li>Linge de lit et serviettes fournis</li>
+      </ul></div>
+      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bath"/></svg> Salles de bain</h3><ul>
+        <li>2 salles de bain, 2 WC</li>
+        <li>Lave-linge et sèche-linge</li>
+        <li>Sèche-serviettes (mode chauffage &amp; boost)</li>
+        <li>Sur demande : lit parapluie, chaise &amp; baignoire bébé</li>
+      </ul></div>
+      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-leaf"/></svg> Extérieur</h3><ul>
+        <li>Terrasse 70 m² avec pergola &amp; barbecue</li>
+        <li>Spa / jacuzzi 7 places</li>
+        <li>Préau 78 m² : bar, armoires réfrigérées, sanitaire</li>
+        <li>Pétanque, ping-pong, puissance 4 géant</li>
+        <li>Aire de jeu enfants 3–12 ans</li>
+      </ul></div>
+      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-gear"/></svg> Équipements</h3><ul>
+        <li>Climatisation réversible par pièce</li>
+        <li>WiFi fibre optique Orange</li>
+        <li>Borne de recharge véhicule électrique</li>
+        <li>2 parkings sur terrain clos de 6 000 m²</li>
+      </ul></div>
+      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg> Bon à savoir</h3><ul>
+        <li>Logement non-fumeur</li>
+        <li>Animaux non acceptés</li>
+        <li>Non accessible aux personnes à mobilité réduite</li>
+        <li>Capacité événementielle jusqu'à 30 pers. (préau)</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section id="galerie">
+  <div class="wrap">
+    <p class="eyebrow">La galerie</p>
+    <h2 class="sec-title">Jour &amp; nuit</h2>
+    <p class="sec-intro">Découvrez les espaces intérieurs lumineux et les ambiances nocturnes de la terrasse et du spa.</p>
+    <div class="gtabs">
+      <button class="gtab active" data-tab="day"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-sun"/></svg> De jour</button>
+      <button class="gtab" data-tab="night"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg> De nuit</button>
+    </div>
+    <div class="grid-g" id="gallery"></div>
+  </div>
+</section>
+
+<!-- ===== VIDEO ===== -->
+<section class="video" id="video">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--sand)">La propriété</p>
+    <h2 class="sec-title">Vue par drone</h2>
+    <p class="sec-intro">Survolez la maison, son jardin clos, sa terrasse et son préau.</p>
+    <video controls preload="none" poster="assets/img/video_poster.jpg">
+      <source src="assets/video/drone.mp4" type="video/mp4">
+      Votre navigateur ne prend pas en charge la vidéo.
+    </video>
+  </div>
+</section>
+
+<!-- ===== PLAN ===== -->
+<section id="plan">
+  <span class="blob blob-c"></span>
+  <div class="wrap">
+    <p class="eyebrow">Le plan</p>
+    <h2 class="sec-title">D'intérieur</h2>
+    <p class="sec-intro">Une organisation pensée pour les familles et les groupes : zone jour ouverte, zone nuit, et un préau extérieur pour recevoir.</p>
+    <div class="plan-grid">
+      <!-- Plan repris du fichier « Plan d'agencement.pptx » : geometrie inchangee,
+           scinde en deux affiches (maison / preau) pour un rendu moins haut, palette du site. -->
+      <div class="plan-row">
+      <div class="floorplan">
+        <svg viewBox="6 14 696 436" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto" role="img" aria-label="Plan de la maison">
+          <style>
+            .wall{stroke:#0e0e0e;stroke-width:2.25;stroke-linecap:square}
+            .door{fill:none;stroke:#b3ac9e;stroke-width:1.1}
+            .furn{fill:#e9e2d7;stroke:#0e0e0e;stroke-width:1.1}
+            .tub{fill:#d9d9d9;stroke:#0e0e0e;stroke-width:1.1}
+            .lbl{font:400 10.5px Poppins,sans-serif;fill:#0e0e0e;text-anchor:middle;dominant-baseline:middle;paint-order:stroke;stroke:#fff;stroke-width:3.4px;stroke-linejoin:round}
+            .ttl{font:700 15px Poppins,sans-serif;fill:#0e0e0e;text-anchor:middle;dominant-baseline:middle;letter-spacing:1.2px}
+          </style>
+          <g transform="translate(-3.8 -15.9)">
+            <path class="door" d="M229.6 240.4 L228.3 240.4 L227.1 240.3 L225.8 240.0 L224.5 239.7 L223.3 239.4 L222.1 238.9 L220.9 238.3 L219.8 237.7 L218.6 237.0 L217.5 236.2 L216.5 235.3 L215.5 234.4 L214.5 233.4 L213.6 232.3 L212.7 231.2 L211.9 230.0 L211.1 228.7 L210.4 227.5 L209.7 226.1 L209.2 224.7 L208.6 223.3 L208.2 221.9 L207.8 220.4 L207.5 218.9 L207.2 217.3 L207.1 215.8 L206.9 214.3 L206.9 212.7"/>
+            <path class="door" d="M127.5 240.4 L126.3 240.4 L125.0 240.3 L123.7 240.0 L122.5 239.7 L121.3 239.4 L120.0 238.9 L118.9 238.3 L117.7 237.7 L116.6 237.0 L115.5 236.2 L114.4 235.3 L113.4 234.4 L112.4 233.4 L111.5 232.3 L110.6 231.2 L109.8 230.0 L109.0 228.7 L108.3 227.5 L107.7 226.1 L107.1 224.7 L106.6 223.3 L106.1 221.9 L105.7 220.4 L105.4 218.9 L105.2 217.3 L105.0 215.8 L104.9 214.3 L104.9 212.7"/>
+            <path class="door" d="M326.0 240.4 L324.7 240.4 L323.4 240.3 L322.2 240.0 L320.9 239.7 L319.7 239.4 L318.5 238.9 L317.3 238.3 L316.1 237.7 L315.0 237.0 L313.9 236.2 L312.9 235.3 L311.8 234.4 L310.9 233.4 L309.9 232.3 L309.1 231.2 L308.2 230.0 L307.5 228.7 L306.8 227.5 L306.1 226.1 L305.5 224.7 L305.0 223.3 L304.6 221.9 L304.2 220.4 L303.9 218.9 L303.6 217.3 L303.4 215.8 L303.3 214.3 L303.3 212.7"/>
+            <path class="door" d="M365.7 150.9 L366.9 151.0 L368.2 151.1 L369.5 151.3 L370.7 151.6 L371.9 152.0 L373.2 152.5 L374.3 153.0 L375.5 153.7 L376.6 154.4 L377.7 155.2 L378.8 156.0 L379.8 157.0 L380.8 158.0 L381.7 159.1 L382.6 160.2 L383.4 161.4 L384.2 162.6 L384.9 163.9 L385.5 165.3 L386.1 166.6 L386.6 168.1 L387.1 169.5 L387.5 171.0 L387.8 172.5 L388.0 174.0 L388.2 175.6 L388.3 177.1 L388.3 178.7"/>
+            <path class="door" d="M439.4 264.3 L440.7 264.4 L441.9 264.5 L443.2 264.7 L444.4 265.0 L445.7 265.4 L446.9 265.9 L448.1 266.4 L449.2 267.1 L450.3 267.8 L451.4 268.6 L452.5 269.4 L453.5 270.4 L454.5 271.4 L455.4 272.5 L456.3 273.6 L457.1 274.8 L457.9 276.0 L458.6 277.3 L459.2 278.7 L459.8 280.0 L460.3 281.5 L460.8 282.9 L461.2 284.4 L461.5 285.9 L461.7 287.4 L461.9 289.0 L462.0 290.5 L462.1 292.1"/>
+            <path class="door" d="M439.4 116.9 L440.7 117.0 L441.9 117.1 L443.2 117.3 L444.4 117.6 L445.7 118.0 L446.9 118.5 L448.1 119.0 L449.2 119.7 L450.3 120.4 L451.4 121.2 L452.5 122.0 L453.5 123.0 L454.5 124.0 L455.4 125.0 L456.3 126.2 L457.1 127.4 L457.9 128.6 L458.6 129.9 L459.2 131.2 L459.8 132.6 L460.3 134.0 L460.8 135.5 L461.2 137.0 L461.5 138.5 L461.7 140.0 L461.9 141.5 L462.0 143.1 L462.1 144.7"/>
+            <path class="door" d="M104.9 178.4 L104.8 180.0 L104.7 181.5 L104.5 183.0 L104.3 184.5 L104.0 186.0 L103.6 187.5 L103.1 188.9 L102.6 190.4 L102.0 191.7 L101.4 193.1 L100.7 194.3 L99.9 195.6 L99.1 196.7 L98.2 197.9 L97.3 198.9 L96.3 199.9 L95.3 200.9 L94.2 201.7 L93.1 202.5 L92.0 203.2 L90.9 203.8 L89.7 204.4 L88.5 204.8 L87.2 205.2 L86.0 205.5 L84.7 205.7 L83.4 205.9 L82.2 205.9"/>
+            <path class="door" d="M138.9 178.4 L138.8 180.0 L138.7 181.5 L138.6 183.0 L138.3 184.5 L138.0 186.0 L137.6 187.5 L137.1 188.9 L136.6 190.4 L136.0 191.7 L135.4 193.1 L134.7 194.3 L133.9 195.6 L133.1 196.7 L132.2 197.9 L131.3 198.9 L130.3 199.9 L129.3 200.9 L128.3 201.7 L127.2 202.5 L126.0 203.2 L124.9 203.8 L123.7 204.4 L122.5 204.8 L121.2 205.2 L120.0 205.5 L118.7 205.7 L117.5 205.9 L116.2 205.9"/>
+            <path class="door" d="M360.0 212.4 L360.0 214.0 L359.9 215.5 L359.7 217.1 L359.4 218.6 L359.1 220.1 L358.7 221.5 L358.3 223.0 L357.8 224.4 L357.2 225.7 L356.5 227.1 L355.8 228.4 L355.1 229.6 L354.2 230.8 L353.4 231.9 L352.4 232.9 L351.5 233.9 L350.4 234.9 L349.4 235.7 L348.3 236.5 L347.2 237.2 L346.0 237.8 L344.8 238.4 L343.6 238.9 L342.4 239.3 L341.1 239.6 L339.9 239.8 L338.6 239.9 L337.3 239.9"/>
+            <path class="door" d="M320.3 178.4 L320.3 176.9 L320.5 175.3 L320.6 173.8 L320.9 172.3 L321.2 170.8 L321.6 169.3 L322.0 167.9 L322.6 166.5 L323.1 165.1 L323.8 163.8 L324.5 162.5 L325.3 161.3 L326.1 160.1 L327.0 159.0 L327.9 157.9 L328.8 156.9 L329.9 156.0 L330.9 155.1 L332.0 154.4 L333.1 153.7 L334.3 153.0 L335.5 152.5 L336.7 152.0 L337.9 151.6 L339.2 151.3 L340.5 151.1 L341.7 151.0 L343.0 150.9"/>
+            <path class="door" d="M587.3 118.3 L588.9 118.3 L590.5 118.4 L592.0 118.6 L593.5 118.8 L595.0 119.1 L596.5 119.5 L598.0 119.9 L599.4 120.4 L600.8 121.0 L602.1 121.6 L603.4 122.3 L604.7 123.1 L605.9 123.9 L607.0 124.7 L608.1 125.6 L609.1 126.5 L610.0 127.5 L610.9 128.6 L611.7 129.6 L612.4 130.7 L613.0 131.8 L613.6 133.0 L614.1 134.2 L614.4 135.4 L614.8 136.6 L615.0 137.8 L615.1 139.0 L615.1 140.3"/>
+            <path class="door" d="M632.2 82.0 L632.1 83.6 L632.0 85.1 L631.8 86.6 L631.6 88.2 L631.3 89.6 L630.9 91.1 L630.4 92.6 L629.9 94.0 L629.3 95.3 L628.7 96.7 L628.0 97.9 L627.2 99.2 L626.4 100.4 L625.5 101.5 L624.6 102.5 L623.6 103.5 L622.6 104.5 L621.5 105.3 L620.4 106.1 L619.3 106.8 L618.2 107.4 L617.0 108.0 L615.8 108.5 L614.5 108.8 L613.3 109.1 L612.0 109.4 L610.7 109.5 L609.5 109.5"/>
+            <rect class="tub" x="360.0" y="366.4" width="68.0" height="68.0" rx="6"/>
+            <line class="wall" x1="19.8" y1="82.9" x2="694.5" y2="82.9"/>
+            <line class="wall" x1="19.8" y1="82.9" x2="19.8" y2="304.0"/>
+            <line class="wall" x1="694.5" y1="82.9" x2="694.5" y2="304.0"/>
+            <line class="wall" x1="19.8" y1="304.0" x2="433.7" y2="304.0"/>
+            <line class="wall" x1="138.9" y1="179.3" x2="320.3" y2="179.3"/>
+            <line class="wall" x1="433.7" y1="179.3" x2="433.7" y2="82.9"/>
+            <line class="wall" x1="467.7" y1="179.3" x2="467.7" y2="82.9"/>
+            <line class="wall" x1="586.8" y1="82.9" x2="586.8" y2="116.9"/>
+            <line class="wall" x1="694.5" y1="145.3" x2="586.8" y2="145.3"/>
+            <line class="wall" x1="586.8" y1="281.3" x2="586.8" y2="304.0"/>
+            <line class="wall" x1="433.7" y1="304.0" x2="433.7" y2="213.3"/>
+            <line class="wall" x1="76.5" y1="179.3" x2="76.5" y2="213.3"/>
+            <line class="wall" x1="462.1" y1="292.7" x2="586.8" y2="292.7"/>
+            <line class="wall" x1="586.8" y1="304.0" x2="694.5" y2="304.0"/>
+            <line class="wall" x1="331.7" y1="213.3" x2="331.7" y2="304.0"/>
+            <line class="wall" x1="235.3" y1="213.3" x2="235.3" y2="304.0"/>
+            <line class="wall" x1="133.2" y1="213.3" x2="133.2" y2="304.0"/>
+            <line class="wall" x1="110.5" y1="128.3" x2="144.5" y2="128.3"/>
+            <line class="wall" x1="144.5" y1="179.3" x2="144.5" y2="82.9"/>
+            <line class="wall" x1="360.0" y1="179.3" x2="360.0" y2="82.9"/>
+            <line class="wall" x1="110.5" y1="128.3" x2="110.5" y2="179.3"/>
+            <line class="wall" x1="229.6" y1="213.3" x2="229.6" y2="240.4"/>
+            <line class="wall" x1="326.0" y1="213.3" x2="326.0" y2="240.4"/>
+            <line class="wall" x1="337.3" y1="213.3" x2="337.3" y2="240.4"/>
+            <line class="wall" x1="365.7" y1="150.9" x2="365.7" y2="178.1"/>
+            <line class="wall" x1="127.5" y1="213.3" x2="127.5" y2="240.4"/>
+            <line class="wall" x1="116.2" y1="179.3" x2="116.2" y2="206.4"/>
+            <line class="wall" x1="82.2" y1="179.3" x2="82.2" y2="206.4"/>
+            <line class="wall" x1="343.0" y1="150.9" x2="343.0" y2="178.1"/>
+            <line class="wall" x1="348.7" y1="179.3" x2="348.7" y2="82.9"/>
+            <line class="wall" x1="439.4" y1="264.3" x2="439.4" y2="291.5"/>
+            <line class="wall" x1="439.4" y1="116.9" x2="439.4" y2="144.0"/>
+            <line class="wall" x1="433.7" y1="145.3" x2="439.4" y2="145.3"/>
+            <line class="wall" x1="586.8" y1="139.6" x2="615.1" y2="139.6"/>
+            <line class="wall" x1="19.8" y1="213.3" x2="104.9" y2="212.7"/>
+            <line class="wall" x1="229.6" y1="213.3" x2="303.3" y2="213.3"/>
+            <line class="wall" x1="360.0" y1="213.3" x2="433.7" y2="213.3"/>
+            <line class="wall" x1="127.5" y1="213.3" x2="206.9" y2="213.3"/>
+            <line class="wall" x1="326.0" y1="213.3" x2="337.3" y2="213.3"/>
+            <line class="wall" x1="76.5" y1="179.3" x2="82.2" y2="179.3"/>
+            <line class="wall" x1="104.9" y1="179.3" x2="116.2" y2="179.3"/>
+            <line class="wall" x1="343.0" y1="179.3" x2="365.7" y2="179.3"/>
+            <line class="wall" x1="388.3" y1="179.3" x2="433.7" y2="179.3"/>
+            <line class="wall" x1="433.7" y1="292.7" x2="439.4" y2="292.7"/>
+            <line class="wall" x1="462.1" y1="145.3" x2="467.7" y2="145.3"/>
+            <line class="wall" x1="586.8" y1="139.6" x2="586.8" y2="185.0"/>
+            <line class="wall" x1="161.6" y1="304.0" x2="195.6" y2="304.0"/>
+            <line class="wall" x1="48.2" y1="304.0" x2="82.2" y2="304.0"/>
+            <line class="wall" x1="269.3" y1="304.0" x2="303.3" y2="304.0"/>
+            <line class="wall" x1="365.7" y1="304.0" x2="399.7" y2="304.0"/>
+            <line class="wall" x1="189.9" y1="82.9" x2="223.9" y2="82.9"/>
+            <line class="wall" x1="280.6" y1="82.9" x2="314.6" y2="82.9"/>
+            <line class="wall" x1="371.3" y1="82.9" x2="405.4" y2="82.9"/>
+            <line class="wall" x1="439.4" y1="82.9" x2="456.4" y2="82.9"/>
+            <line class="wall" x1="501.7" y1="82.9" x2="552.8" y2="82.9"/>
+            <line class="wall" x1="490.4" y1="292.7" x2="547.1" y2="292.7"/>
+            <line class="wall" x1="615.1" y1="304.0" x2="666.2" y2="304.0"/>
+            <line class="wall" x1="121.9" y1="82.9" x2="138.9" y2="82.9"/>
+            <line class="wall" x1="19.8" y1="133.9" x2="19.8" y2="167.9"/>
+            <line class="wall" x1="609.5" y1="82.9" x2="609.5" y2="110.0"/>
+            <line class="wall" x1="688.9" y1="304.0" x2="688.9" y2="457.1"/>
+            <line class="wall" x1="348.7" y1="457.1" x2="688.9" y2="457.1"/>
+            <line class="wall" x1="348.7" y1="304.0" x2="348.7" y2="457.1"/>
+            <text class="lbl" x="280.6" y="257.6">
+        <tspan x="280.6">Chambre 2</tspan>
+        </text>
+            <text class="lbl" x="388.3" y="257.6">
+        <tspan x="388.3">Chambre 1</tspan>
+        </text>
+            <text class="lbl" x="184.2" y="257.6">
+        <tspan x="184.2">Chambre 3</tspan>
+        </text>
+            <text class="lbl" x="76.5" y="257.6">
+        <tspan x="76.5">Chambre 4</tspan>
+        </text>
+            <text class="lbl" x="246.6" y="127.2">
+        <tspan x="246.6">Chambre 5</tspan>
+        </text>
+            <text class="lbl" x="76.5" y="122.9">
+        <tspan x="76.5">Salle</tspan>
+        <tspan x="76.5" dy="12.0">de</tspan>
+        <tspan x="76.5" dy="12.0">Bain 2</tspan>
+        </text>
+            <text class="lbl" x="411.0" y="111.5">
+        <tspan x="411.0">Salle</tspan>
+        <tspan x="411.0" dy="12.0">de</tspan>
+        <tspan x="411.0" dy="12.0">Bain 1</tspan>
+        </text>
+            <text class="lbl" x="144.5" y="144.9">
+        <tspan x="144.5">WC</tspan>
+        <tspan x="144.5" dy="12.0">2</tspan>
+        </text>
+            <text class="lbl" x="467.7" y="99.5">
+        <tspan x="467.7">WC</tspan>
+        <tspan x="467.7" dy="12.0">1</tspan>
+        </text>
+            <text class="lbl" x="524.4" y="127.2">
+        <tspan x="524.4">Cuisine</tspan>
+        </text>
+            <text class="lbl" x="524.4" y="229.3">
+        <tspan x="524.4">Séjour</tspan>
+        </text>
+            <text class="lbl" x="643.5" y="207.9">
+        <tspan x="643.5">Salon</tspan>
+        <tspan x="643.5" dy="12.0">avec</tspan>
+        <tspan x="643.5" dy="12.0">Mezzanine</tspan>
+        </text>
+            <text class="lbl" x="660.5" y="105.2">
+        <tspan x="660.5">Local</tspan>
+        <tspan x="660.5" dy="12.0">Technique</tspan>
+        </text>
+            <text class="ttl" x="336.2" y="46.4">
+        <tspan x="336.2">MAISON</tspan>
+        </text>
+            <text class="lbl" x="552.8" y="388.0">
+        <tspan x="552.8">Terrasse</tspan>
+        </text>
+            <text class="lbl" x="405.4" y="399.4">
+        <tspan x="405.4">Jacuzzi</tspan>
+        </text>
+          </g>
+        </svg>
+        <p class="plan-caption">Plan schématique — non contractuel.</p>
+      </div>
+      <div class="plan-legend">
+        <h3>La maison</h3>
+        <p>La maison s'organise en une zone nuit — 6 chambres, 2 salles de bain, 2 WC — et une zone jour ouverte avec cuisine, séjour et salon en mezzanine, prolongée par une terrasse de 70 m² avec spa.</p>
+        <ul>
+          <li>6 chambres dont 1 mezzanine</li>
+          <li>2 salles de bain</li>
+          <li>2 WC</li>
+          <li>Cuisine équipée</li>
+          <li>Séjour &amp; salon</li>
+          <li>Terrasse 70 m² + spa</li>
+        </ul>
+      </div>
+      </div>
+
+      <div class="plan-row reverse">
+      <div class="floorplan">
+        <svg viewBox="44 486 618 346" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto" role="img" aria-label="Plan du préau extérieur">
+          <g transform="translate(-6.6 455.4)">
+            <path class="door" d="M525.3 231.8 L525.7 230.4 L526.2 229.0 L526.7 227.6 L527.3 226.3 L528.0 225.0 L528.8 223.7 L529.6 222.5 L530.5 221.4 L531.5 220.3 L532.5 219.2 L533.6 218.2 L534.7 217.3 L535.9 216.4 L537.1 215.7 L538.4 214.9 L539.6 214.3 L541.0 213.7 L542.3 213.2 L543.7 212.8 L545.1 212.4 L546.5 212.2 L547.9 212.0 L549.4 211.9 L550.8 211.9 L552.2 212.0 L553.6 212.1 L555.1 212.3 L556.5 212.7"/>
+            <path class="door" d="M553.8 189.6 L552.2 189.8 L550.7 190.0 L549.1 190.1 L547.5 190.1 L546.0 190.0 L544.4 189.8 L542.9 189.6 L541.4 189.3 L539.9 189.0 L538.5 188.5 L537.1 188.0 L535.7 187.4 L534.4 186.8 L533.1 186.1 L531.9 185.3 L530.7 184.5 L529.6 183.6 L528.6 182.7 L527.7 181.7 L526.8 180.7 L526.0 179.6 L525.2 178.5 L524.6 177.3 L524.0 176.1 L523.5 174.9 L523.1 173.7 L522.8 172.4 L522.5 171.1"/>
+            <rect class="furn" x="643.5" y="349.4" width="17.0" height="17.0"/>
+            <rect class="furn" x="445.0" y="349.4" width="17.0" height="17.0"/>
+            <rect class="furn" x="59.5" y="349.4" width="17.0" height="17.0"/>
+            <rect class="furn" x="240.9" y="349.4" width="17.0" height="17.0"/>
+            <rect class="furn" x="286.3" y="315.4" width="136.1" height="22.7"/>
+            <line class="wall" x1="59.5" y1="82.9" x2="660.5" y2="82.9"/>
+            <line class="wall" x1="59.5" y1="82.9" x2="59.5" y2="185.0"/>
+            <line class="wall" x1="660.5" y1="82.9" x2="660.5" y2="366.4"/>
+            <line class="wall" x1="552.8" y1="167.9" x2="552.8" y2="82.9"/>
+            <line class="wall" x1="552.8" y1="190.6" x2="552.8" y2="213.3"/>
+            <line class="wall" x1="660.5" y1="202.0" x2="552.8" y2="202.0"/>
+            <line class="wall" x1="552.8" y1="304.0" x2="660.5" y2="304.0"/>
+            <line class="wall" x1="524.4" y1="167.9" x2="552.8" y2="167.9"/>
+            <line class="wall" x1="524.4" y1="236.0" x2="552.8" y2="236.0"/>
+            <line class="wall" x1="552.8" y1="304.0" x2="552.8" y2="236.0"/>
+            <line class="wall" x1="59.5" y1="258.7" x2="59.5" y2="360.7"/>
+            <text class="lbl" x="609.5" y="241.3">
+        <tspan x="609.5">Local</tspan>
+        <tspan x="609.5" dy="12.0">Technique</tspan>
+        </text>
+            <text class="lbl" x="603.8" y="138.6">
+        <tspan x="603.8">Sanitaire</tspan>
+        </text>
+            <text class="lbl" x="371.3" y="325.7">
+        <tspan x="371.3">Bar</tspan>
+        </text>
+            <text class="ttl" x="372.1" y="46.4">
+        <tspan x="372.1">PREAU EXTERIEUR</tspan>
+        </text>
+          </g>
+        </svg>
+        <p class="plan-caption">Plan schématique — non contractuel.</p>
+      </div>
+      <div class="plan-legend">
+        <h3>Le préau extérieur</h3>
+        <p style="margin-bottom:14px">Un préau aménagé de 78 m² pensé pour recevoir : bar équipé, armoires réfrigérées, sanitaire indépendant et local technique, le tout ouvert sur le jardin clos de 3 000 m².</p>
+        <ul>
+          <li>Préau 78 m²</li>
+          <li>Bar &amp; armoires réfrigérées</li>
+          <li>Sanitaire extérieur</li>
+          <li>Local technique</li>
+          <li>Jardin clos 3 000 m²</li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOTICES ===== -->
+<section class="notices" id="notices">
+  <div class="wrap">
+    <p class="eyebrow">Les notices</p>
+    <h2 class="sec-title">D'utilisation</h2>
+    <p class="sec-intro">Pour profiter pleinement et en toute sérénité de chaque équipement. Des tutoriels vidéo accompagnent les principales notices.</p>
+    <div class="ngrid">
+      <div class="ncard"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-spa"/></svg></div><h3>Le Spa / Jacuzzi</h3>
+        <p>Température maximale conseillée : 37 °C. Merci de remettre la consigne à 29 °C et de replacer la couverture thermique après chaque utilisation, pour le bon fonctionnement de l'équipement.</p>
+        <a href="#" data-tuto="Spa">▶ Voir le tuto vidéo</a></div>
+      <div class="ncard"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-thermo"/></svg></div><h3>Chauffage / Climatisation</h3>
+        <p>2 pompes à chaleur réversibles sur 2 zones indépendantes : zone nuit (boîtier principal chambre 1) et zone jour (boîtier principal à l'entrée). Chaque pièce dispose d'un boîtier secondaire.</p>
+        <a href="#" data-tuto="Chauffage/Climatisation">▶ Voir le tuto vidéo</a></div>
+      <div class="ncard"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg></div><h3>Sèche-serviettes</h3>
+        <p>Deux modes : <b>Chauffage</b> pour mettre la pièce à température, et <b>Boost</b> pour une soufflerie discrète (+3 °C en 15 min) sur la durée souhaitée.</p>
+        <a href="#" data-tuto="Sèche-serviettes">▶ Voir le tuto vidéo</a></div>
+      <div class="ncard"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-dish"/></svg></div><h3>Lave-vaisselle</h3>
+        <p>Retrouvez le fonctionnement du bandeau de commande et les programmes pour un usage simple et efficace au quotidien.</p>
+        <a href="#" data-tuto="Lave-vaisselle">▶ Voir le tuto vidéo</a></div>
+      <div class="ncard"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-micro"/></svg></div><h3>Micro-ondes</h3>
+        <p>L'essentiel pour utiliser le micro-ondes qui équipe la cuisine, en toute simplicité.</p>
+        <a href="#" data-tuto="Micro-ondes">▶ Voir le tuto vidéo</a></div>
+      <div class="ncard"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-slide"/></svg></div><h3>Aire de jeux</h3>
+        <p>Aire de jeux FATMOUSE réservée aux enfants de 3 à 12 ans. Les enfants ne doivent jamais être laissés sans surveillance d'un adulte.</p>
+        <a href="#" data-tuto="Aire de jeux">▶ En savoir plus</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ALENTOURS ===== -->
+<section class="around" id="alentours">
+  <div class="wrap">
+    <p class="eyebrow">Un territoire</p>
+    <h2 class="sec-title">D'exception</h2>
+    <p class="sec-intro">Châteaux de la Loire, vignobles, parcs de loisirs, marchés et gastronomie : tout est à portée depuis le gîte.</p>
+    <div class="acols">
+      <div class="acard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-castle"/></svg> Châteaux &amp; patrimoine</h3>
+        <div class="row">Château de Montsoreau <span>15 km</span></div>
+        <div class="row">Château de Saumur <span>10 km</span></div>
+        <div class="row">Abbaye de Fontevraud <span>15 km</span></div>
+        <div class="row">Château de Brézé <span>15 km</span></div>
+        <div class="row">Château de Chinon <span>23 km</span></div>
+        <div class="row">Rigny-Ussé <span>28 km</span></div>
+        <div class="row">Langeais <span>33 km</span></div>
+        <div class="row">Villandry · Azay-le-Rideau <span>42 km</span></div>
+      </div>
+      <div class="acard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-ferris"/></svg> Parcs &amp; loisirs</h3>
+        <div class="row">Center Parcs – Le Bois aux Daims <span>20 km</span></div>
+        <div class="row">Zoo de Doué-la-Fontaine <span>15 km</span></div>
+        <div class="row">Terra Botanica – Angers <span>66 km</span></div>
+        <div class="row">Futuroscope &amp; Aquascope <span>81 km</span></div>
+        <div class="row">Puy du Fou <span>109 km</span></div>
+        <div class="row">Saumur Forest Aventures <span>14 km</span></div>
+      </div>
+      <div class="acard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bike"/></svg> Nature &amp; sport</h3>
+        <div class="row">La Loire à vélo <span>3 km</span></div>
+        <div class="row">La Loire en bateau <span>10 km</span></div>
+        <div class="row">Golf de Roiffé (18 trous) <span>11 km</span></div>
+        <div class="row">Circuit équestre Brain-sur-Allonnes <span>10 km</span></div>
+        <div class="row">Karting de Bournand <span>22 km</span></div>
+        <div class="row">Le Cadre Noir de Saumur <span>15 km</span></div>
+      </div>
+      <div class="acard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-wine"/></svg> Caves &amp; vignobles</h3>
+        <div class="row">Bouvet-Ladubay, Gratien &amp; Meyer <span>Saumur</span></div>
+        <div class="row">Ackerman, Langlois-Château <span>Saumur</span></div>
+        <div class="row">Veuve Amiot, Robert &amp; Marcel <span>Saumur</span></div>
+        <div class="row">Le Plessis <span>St-Nicolas-de-Bourgueil</span></div>
+        <div class="row">Casino JOA <span>Saumur</span></div>
+      </div>
+      <div class="acard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-basket"/></svg> Marchés (le matin)</h3>
+        <div class="row">Mardi <span>Bourgueil</span></div>
+        <div class="row">Mercredi <span>Beaumont-en-Véron</span></div>
+        <div class="row">Jeudi <span>Varennes-sur-Loire</span></div>
+        <div class="row">Vendredi <span>Avoine · Chouzé-sur-Loire</span></div>
+        <div class="row">Samedi <span>Saumur · Bourgueil</span></div>
+        <div class="row">Dimanche <span>Montsoreau · Langeais</span></div>
+      </div>
+      <div class="acard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-cutlery"/></svg> Restaurants &amp; commodités</h3>
+        <div class="row">Le Montsorelli – Montsoreau <span>4,6 km</span></div>
+        <div class="row">Le Vertvert – Montsoreau <span>4 km</span></div>
+        <div class="row">L'Hélianthe – Turquant <span>4 km</span></div>
+        <div class="row">Boulangerie, boucherie, épicerie <span>4 km</span></div>
+        <div class="row">Pharmacie &amp; maison de santé <span>2 km</span></div>
+      </div>
+    </div>
+    <p class="eyebrow" style="display:block;text-align:center;transform-origin:center;margin-left:0">Nos partenaires</p>
+    <div class="partners">
+      <!-- Visuels de fond : festivini.jpg = affiche Festivini 2026 (source festivini.com) ;
+           saumur-tourisme.jpg = chateau de Saumur, credit photo Christophe Gagneux / Pixim (source ot-saumur.fr).
+           Ces deux images appartiennent aux partenaires : verifier l'accord avant mise en ligne.
+           gite-google.jpg = photo du gite (facade.jpg), aucun logo Google utilise. -->
+      <a class="partner" href="https://festivini.com" target="_blank" rel="noopener"
+         style="--bg:url('assets/img/partners/festivini.jpg')">
+        <b>Festivini</b><small>Le festival de la culture du vin en pays saumurois</small></a>
+      <a class="partner" href="https://www.ot-saumur.fr" target="_blank" rel="noopener"
+         style="--bg:url('assets/img/partners/saumur-tourisme.jpg')">
+        <b>Saumur Val de Loire Tourisme</b><small>Office de tourisme officiel de Saumur</small></a>
+      <a class="partner" id="partner-google" target="_blank" rel="noopener"
+         style="--bg:url('assets/img/partners/gite-google.jpg')">
+        <b>Google · Avis &amp; itinéraire</b><small>Retrouvez-nous sur Google Business Profile</small></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RULES ===== -->
+<section class="rules">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--sand)">Quelques</p>
+    <h2 class="sec-title">Règles</h2>
+    <div class="rgrid" style="margin-top:30px">
+      <div class="rule"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-house"/></svg></div><div><b>Respect des lieux</b><p>Prendre soin de la maison et des extérieurs en évitant toute dégradation.</p></div></div>
+      <div class="rule"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-paw"/></svg></div><div><b>Animaux</b><p>Nous adorons les animaux, mais ils ne sont pas acceptés durant le séjour.</p></div></div>
+      <div class="rule"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-nosmoke"/></svg></div><div><b>Ne pas fumer</b><p>Merci de ne pas fumer ni vapoter à l'intérieur de la maison.</p></div></div>
+      <div class="rule"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mute"/></svg></div><div><b>Fêtes &amp; réceptions</b><p>Merci de limiter les nuisances sonores après 23h, par respect du voisinage.</p></div></div>
+      <div class="rule"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-users"/></svg></div><div><b>Personne supplémentaire</b><p>Aucun voyageur supplémentaire imprévu sans nous en avoir informés.</p></div></div>
+      <div class="rule"><div class="ic"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-life"/></svg></div><div><b>Sécurité</b><p>Respecter les règles de sécurité, notamment autour du spa et de l'aire de jeu.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCES ===== -->
+<section id="acces">
+  <div class="wrap">
+    <p class="eyebrow">Comment venir</p>
+    <h2 class="sec-title">Accès &amp; localisation</h2>
+    <p class="sec-intro">Au cœur du Val de Loire, à Varennes-sur-Loire, entre Saumur et Chinon.</p>
+    <div class="acc-grid">
+      <div class="acc-info">
+        <h3>Gîte Marie de la Loire</h3>
+        <div class="acc-address">
+          <p>11 rue du Port Maupoint<br>49730 Varennes-sur-Loire</p>
+          <a class="btn btn-primary btn-sm" id="cta-itineraire" target="_blank" rel="noopener"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-compass"/></svg> Itinéraire Google Maps</a>
+        </div>
+        <ul class="dist">
+          <li>Gare de Saumur <span>~ 15 min</span></li>
+          <li>Saumur centre <span>~ 15 min</span></li>
+          <li>Montsoreau <span>~ 5 min</span></li>
+          <li>Chinon <span>~ 30 min</span></li>
+          <li>Angers <span>~ 50 min</span></li>
+          <li>Tours <span>~ 50 min</span></li>
+          <li>Loire à vélo <span>~ 3 km</span></li>
+        </ul>
+      </div>
+      <div class="map-box">
+        <iframe loading="lazy" title="Carte — Varennes-sur-Loire"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.05%2C47.18%2C0.16%2C47.28&layer=mapnik&marker=47.2275%2C0.0560"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESERVER ===== -->
+<section class="book" id="reserver">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--sand)">Réserver votre</p>
+    <h2 class="sec-title">Séjour</h2>
+    <p class="sec-intro" style="margin:34px auto 44px;max-width:560px;color:rgba(255,255,255,.7)">Réservez en quelques clics via nos plateformes partenaires, ou contactez-nous directement.</p>
+    <div class="book-cta">
+      <a class="btn btn-primary" id="book-airbnb" target="_blank" rel="noopener">Réserver sur Airbnb</a>
+      <a class="btn btn-out" id="book-booking" target="_blank" rel="noopener" style="background:#fff">Réserver sur Booking</a>
+    </div>
+    <div class="book-cards">
+      <div class="qr-card">
+        <img src="assets/img/qr-site.png" alt="QR code du gîte Marie de la Loire">
+        <div><b>Scannez &amp; partagez</b><br><small style="color:var(--muted)">Le QR code mis à disposition dans le logement renvoie vers ce site.</small></div>
+      </div>
+      <div class="contact-card">
+        <div class="line"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg> <a href="mailto:gitemariedelaloire@gmail.com">gitemariedelaloire@gmail.com</a></div>
+        <div class="line"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg> 11 rue du Port Maupoint, 49730 Varennes-sur-Loire</div>
+        <div class="line"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg> <a id="link-google" target="_blank" rel="noopener">Laisser un avis sur Google</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <h4>Marie de la Loire</h4>
+        <small>Gîte · Val de Loire</small>
+        <p style="margin-top:12px;max-width:420px">Maison familiale de charme entre Saumur et Chinon. Location saisonnière, tourisme et rassemblements de famille.</p>
+      </div>
+      <div>
+        <h4 style="font-size:1rem">Navigation</h4>
+        <ul>
+          <li><a href="#maison">La maison</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#video">Vidéo</a></li>
+          <li><a href="#notices">Équipements</a></li>
+          <li><a href="#alentours">Aux alentours</a></li>
+          <li><a href="#acces">Accès</a></li>
+          <li><a href="#reserver">Réserver</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:1rem">Propriétaire</h4>
+        <ul>
+          <li>FLB IMMO</li>
+          <li>9 rue de Gaure</li>
+          <li>49730 Varennes-sur-Loire</li>
+          <li>SIRET 984 556 837 000 16</li>
+          <li><a href="mailto:flb.immo.49@gmail.com">flb.immo.49@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbar">© <span id="year"></span> Gîte Marie de la Loire — FLB IMMO. Tous droits réservés. · Logement non-fumeur · Animaux non acceptés</div>
+  </div>
+</footer>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lb" id="lb">
+  <button class="close" id="lb-close">✕</button>
+  <button class="prev" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="next" id="lb-next">›</button>
+  <div class="cap" id="lb-cap"></div>
+</div>
+
+<script>
+/* ====================================================
+   PERSO — LIENS À PERSONNALISER (remplacez les # ) :
+   ==================================================== */
+var BOOKING_LINKS = {
+  airbnb : "#",   // PERSO : URL de votre annonce Airbnb
+  booking: "#"    // PERSO : URL de votre annonce Booking
+};
+var GOOGLE_BUSINESS = "https://www.google.com/maps/search/?api=1&query=G%C3%AEte+Marie+de+la+Loire+Varennes-sur-Loire"; // PERSO : lien Google Business Profile
+var ADDRESS = "11 rue du Port Maupoint, 49730 Varennes-sur-Loire";
+/* ==================================================== */
+
+// Apply booking links
+['cta-airbnb','book-airbnb','nav-airbnb'].forEach(function(id){var e=document.getElementById(id);if(e)e.href=BOOKING_LINKS.airbnb;});
+['cta-booking','book-booking','nav-booking'].forEach(function(id){var e=document.getElementById(id);if(e)e.href=BOOKING_LINKS.booking;});
+['partner-google','link-google'].forEach(function(id){var e=document.getElementById(id);if(e)e.href=GOOGLE_BUSINESS;});
+document.getElementById('cta-itineraire').href="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(ADDRESS);
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Header scroll
+var hdr=document.getElementById('hdr');
+window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>60);});
+// Burger
+var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',function(){menu.classList.toggle('open');});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');});});
+
+// Gallery — la liste des photos et leurs titres viennent de gallery.json,
+// edite depuis l'interface d'administration (/admin). Ne plus coder en dur ici.
+var galleries={day:[],night:[]};
+var current='day',list=[];
+// Le CMS ecrit des chemins absolus ("/assets/..."). On les rend relatifs pour que
+// le site fonctionne aussi s'il est servi depuis un sous-dossier.
+function resolveSrc(p){return String(p||'').replace(/^\//,'');}
+function renderGallery(tab){
+  current=tab;list=galleries[tab]||[];
+  var g=document.getElementById('gallery');g.textContent='';
+  if(!list.length){g.innerHTML='<p style="color:var(--muted)">Aucune photo pour le moment.</p>';return;}
+  list.forEach(function(item,idx){
+    var d=document.createElement('div');d.className='gitem';
+    var img=document.createElement('img');
+    img.loading='lazy';img.src=resolveSrc(item.src);img.alt=item.cap||'';
+    var l=document.createElement('div');l.className='lbl';l.textContent=item.cap||'';
+    d.appendChild(img);d.appendChild(l);
+    d.addEventListener('click',function(){openLb(idx);});
+    g.appendChild(d);
+  });
+}
+document.querySelectorAll('.gtab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.gtab').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');renderGallery(b.dataset.tab);
+  });
+});
+fetch('gallery.json',{cache:'no-cache'})
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(function(data){
+    galleries.day=Array.isArray(data.day)?data.day:[];
+    galleries.night=Array.isArray(data.night)?data.night:[];
+    renderGallery('day');
+  })
+  .catch(function(err){
+    console.error('Chargement de gallery.json impossible :',err);
+    document.getElementById('gallery').innerHTML=
+      '<p style="color:var(--muted)">La galerie n\'a pas pu etre chargee. '+
+      'En local, ouvrez le site via un petit serveur (<code>python3 -m http.server</code>) '+
+      'plutot qu\'en double-cliquant le fichier.</p>';
+  });
+
+// Lightbox
+var lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbCap=document.getElementById('lb-cap'),lbIdx=0;
+function openLb(i){if(!list.length)return;lbIdx=i;update();lb.classList.add('open');}
+function update(){lbImg.src=list[lbIdx].src;lbCap.textContent=list[lbIdx].cap+" ("+(lbIdx+1)+"/"+list.length+")";}
+function close(){lb.classList.remove('open');}
+document.getElementById('lb-close').onclick=close;
+document.getElementById('lb-next').onclick=function(){lbIdx=(lbIdx+1)%list.length;update();};
+document.getElementById('lb-prev').onclick=function(){lbIdx=(lbIdx-1+list.length)%list.length;update();};
+lb.addEventListener('click',function(e){if(e.target===lb)close();});
+document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')lbIdx=(lbIdx+1)%list.length,update();if(e.key==='ArrowLeft')lbIdx=(lbIdx-1+list.length)%list.length,update();});
+
+// Notices tuto placeholder
+document.querySelectorAll('[data-tuto]').forEach(function(a){
+  a.addEventListener('click',function(e){e.preventDefault();alert("Tutoriel vidéo « "+a.dataset.tuto+" » : lien à ajouter par le propriétaire (PERSO).");});
+});
+</script>
+</body>
+</html>

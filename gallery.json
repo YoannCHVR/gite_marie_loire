@@ -1,0 +1,158 @@
+{
+  "day": [
+    {
+      "src": "/assets/img/gallery/day_01.jpg",
+      "cap": "Façade & terrasse"
+    },
+    {
+      "src": "/assets/img/gallery/day_02.jpg",
+      "cap": "Jardin & espace repas"
+    },
+    {
+      "src": "/assets/img/gallery/day_03.jpg",
+      "cap": "Séjour & escalier"
+    },
+    {
+      "src": "/assets/img/gallery/day_04.jpg",
+      "cap": "Cuisine équipée & îlot"
+    },
+    {
+      "src": "/assets/img/gallery/day_05.jpg",
+      "cap": "Salle à manger"
+    },
+    {
+      "src": "/assets/img/gallery/day_06.jpg",
+      "cap": "Espace de vie ouvert"
+    },
+    {
+      "src": "/assets/img/gallery/day_07.jpg",
+      "cap": "Salon & mezzanine"
+    },
+    {
+      "src": "/assets/img/gallery/day_08.jpg",
+      "cap": "Salon, canapé & TV"
+    },
+    {
+      "src": "/assets/img/gallery/day_09.jpg",
+      "cap": "Cuisine îlot"
+    },
+    {
+      "src": "/assets/img/gallery/day_10.jpg",
+      "cap": "Cuisine & coin bar"
+    },
+    {
+      "src": "/assets/img/gallery/day_11.jpg",
+      "cap": "Séjour ouvert sur terrasse"
+    },
+    {
+      "src": "/assets/img/gallery/day_12.jpg",
+      "cap": "Salle de bain"
+    },
+    {
+      "src": "/assets/img/gallery/day_13.jpg",
+      "cap": "Chambre"
+    },
+    {
+      "src": "/assets/img/gallery/day_14.jpg",
+      "cap": "Chambre"
+    },
+    {
+      "src": "/assets/img/gallery/day_15.jpg",
+      "cap": "Chambre"
+    },
+    {
+      "src": "/assets/img/gallery/day_16.jpg",
+      "cap": "Chambre"
+    },
+    {
+      "src": "/assets/img/gallery/day_17.jpg",
+      "cap": "Chambre (lits jumeaux)"
+    },
+    {
+      "src": "/assets/img/gallery/day_18.jpg",
+      "cap": "Salle de bain & vasque"
+    },
+    {
+      "src": "/assets/img/gallery/day_19.jpg",
+      "cap": "Douche & buanderie"
+    }
+  ],
+  "night": [
+    {
+      "src": "/assets/img/gallery/night_01.jpg",
+      "cap": "Spa illuminé & terrasse"
+    },
+    {
+      "src": "/assets/img/gallery/night_02.jpg",
+      "cap": "Le spa au crépuscule"
+    },
+    {
+      "src": "/assets/img/gallery/night_03.jpg",
+      "cap": "Spa, ambiance colorée"
+    },
+    {
+      "src": "/assets/img/gallery/night_04.jpg",
+      "cap": "Spa & jardin de nuit"
+    },
+    {
+      "src": "/assets/img/gallery/night_05.jpg",
+      "cap": "Terrasse sous les arbres"
+    },
+    {
+      "src": "/assets/img/gallery/night_06.jpg",
+      "cap": "Le spa en soirée"
+    },
+    {
+      "src": "/assets/img/gallery/night_07.jpg",
+      "cap": "Terrasse & transats by night"
+    },
+    {
+      "src": "/assets/img/gallery/night_08.jpg",
+      "cap": "Transats au bord du spa"
+    },
+    {
+      "src": "/assets/img/gallery/night_09.jpg",
+      "cap": "Terrasse illuminée"
+    },
+    {
+      "src": "/assets/img/gallery/night_10.jpg",
+      "cap": "Spa scintillant"
+    },
+    {
+      "src": "/assets/img/gallery/night_11.jpg",
+      "cap": "Façade de nuit"
+    },
+    {
+      "src": "/assets/img/gallery/night_12.jpg",
+      "cap": "Guinguette lumineuse"
+    },
+    {
+      "src": "/assets/img/gallery/night_13.jpg",
+      "cap": "Terrasse & pergola de nuit"
+    },
+    {
+      "src": "/assets/img/gallery/night_14.jpg",
+      "cap": "Maison illuminée"
+    },
+    {
+      "src": "/assets/img/gallery/night_15.jpg",
+      "cap": "Guirlandes du jardin"
+    },
+    {
+      "src": "/assets/img/gallery/night_16.jpg",
+      "cap": "Préau illuminé"
+    },
+    {
+      "src": "/assets/img/gallery/night_17.jpg",
+      "cap": "Préau & jacuzzi de nuit"
+    },
+    {
+      "src": "/assets/img/gallery/night_18.jpg",
+      "cap": "Pergola colorée"
+    },
+    {
+      "src": "/assets/img/gallery/night_19.jpg",
+      "cap": "Façade éclairée"
+    }
+  ]
+}
