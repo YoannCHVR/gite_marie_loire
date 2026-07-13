@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "icon": "i-pot",
+      "title": "Cuisine",
+      "text": "Plaque de cuisson, four, micro-ondes\nRéfrigérateur / congélateur connecté\nLave-vaisselle, petite cave à vin\nBouilloire, cafetière Twist Senséo\nVaisselle, verres et couverts complets"
+    },
+    {
+      "icon": "i-sofa",
+      "title": "Salon & chambres",
+      "text": "Salon avec TV connectée 65\"\n4 chambres en lit 160 cm + TV connectée\n1 chambre lit 160 cm + 2 lits 90 cm\nMezzanine : banquette convertible 140 cm\nLinge de lit et serviettes fournis"
+    },
+    {
+      "icon": "i-bath",
+      "title": "Salles de bain",
+      "text": "2 salles de bain, 2 WC\nLave-linge et sèche-linge\nSèche-serviettes (mode chauffage & boost)\nSur demande : lit parapluie, chaise & baignoire bébé"
+    },
+    {
+      "icon": "i-leaf",
+      "title": "Extérieur",
+      "text": "Terrasse 70 m² avec pergola & barbecue\nSpa / jacuzzi 7 places\nPréau 78 m² : bar, armoires réfrigérées, sanitaire\nPétanque, ping-pong, puissance 4 géant\nAire de jeu enfants 3–12 ans"
+    },
+    {
+      "icon": "i-gear",
+      "title": "Équipements",
+      "text": "Climatisation réversible par pièce\nWiFi fibre optique Orange\nBorne de recharge véhicule électrique\n2 parkings sur terrain clos de 6 000 m²"
+    },
+    {
+      "icon": "i-info",
+      "title": "Bon à savoir",
+      "text": "Logement non-fumeur\nAnimaux non acceptés\nNon accessible aux personnes à mobilité réduite\nCapacité événementielle jusqu'à 30 pers. (préau)"
+    }
+  ]
+}

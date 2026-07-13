@@ -17,16 +17,16 @@ backend:
   # base_url: https://votre-authenticator.workers.dev
 
 # Attention : ces deux chemins ne désignent pas la même chose.
-#  - media_folder  : où les images sont rangées DANS LE DÉPÔT (le site vit dans un sous-dossier).
+#  - media_folder  : où les images sont rangées DANS LE DÉPÔT (chemin depuis la racine du dépôt).
 #  - public_folder : sous quel chemin elles sont servies DANS L'URL du site en ligne.
-media_folder: "/Site Marie de la Loire/assets/img/gallery"
+media_folder: "assets/img/gallery"
 public_folder: "/assets/img/gallery"
 
 # La galerie est un fichier unique : c'est le cas d'usage d'un « singleton ».
 singletons:
   - name: gallery
     label: Galerie photos
-    file: "Site Marie de la Loire/gallery.json"
+    file: "gallery.json"
     icon: photo_library
     fields:
       - name: day
@@ -50,3 +50,72 @@ singletons:
         fields:
           - { name: src, label: Photo, widget: image }
           - { name: cap, label: Titre affiché, widget: string }
+
+  # Section « À votre disposition » de la page d'accueil.
+  # Les icônes ne sont pas des fichiers : ce sont les dessins déjà intégrés au
+  # site (sprite <symbol> en haut du <body> d'index.html). On choisit donc un
+  # identifiant dans la liste ci-dessous ; ajouter une option ici suppose
+  # d'ajouter le <symbol> correspondant dans index.html.
+  - name: equipements
+    label: Équipements
+    file: "equipements.json"
+    icon: checklist
+    fields:
+      - name: cards
+        label: Cartes
+        label_singular: Carte
+        widget: list
+        collapsed: true
+        summary: "{{title}}"
+        fields:
+          # L'emoji en tête de libellé n'est là que pour illustrer le choix DANS le
+          # CMS : Sveltia n'affiche que du texte dans un menu déroulant, il ne sait
+          # pas y dessiner l'icône SVG du site. Seule la « value » est enregistrée
+          # (ex. i-pot) ; l'emoji ne part jamais sur le site.
+          - name: icon
+            label: Icône
+            widget: select
+            default: i-gear
+            options:
+              - { label: "🍲  Cuisine (marmite)", value: i-pot }
+              - { label: "🍴  Couverts", value: i-cutlery }
+              - { label: "🍽️  Lave-vaisselle", value: i-dish }
+              - { label: "⏲️  Micro-ondes", value: i-micro }
+              - { label: "🍷  Vin", value: i-wine }
+              - { label: "🧺  Panier / courses", value: i-basket }
+              - { label: "🛋️  Salon / canapé", value: i-sofa }
+              - { label: "🛏️  Lit / chambre", value: i-bed }
+              - { label: "🛁  Salle de bain", value: i-bath }
+              - { label: "🏠  Maison", value: i-house }
+              - { label: "🛖  Préau", value: i-shelter }
+              - { label: "🌿  Extérieur / jardin (feuille)", value: i-leaf }
+              - { label: "♨️  Spa / jacuzzi", value: i-spa }
+              - { label: "❄️  Climatisation (flocon)", value: i-snow }
+              - { label: "🌡️  Température / thermostat", value: i-thermo }
+              - { label: "🔥  Chauffage / barbecue (flamme)", value: i-flame }
+              - { label: "📶  WiFi", value: i-wifi }
+              - { label: "🔌  Borne de recharge", value: i-charger }
+              - { label: "🅿️  Parking", value: i-parking }
+              - { label: "🚲  Vélo", value: i-bike }
+              - { label: "🎱  Pétanque", value: i-boules }
+              - { label: "🛝  Aire de jeux (toboggan)", value: i-slide }
+              - { label: "🎡  Fête foraine / grande roue", value: i-ferris }
+              - { label: "🏰  Château", value: i-castle }
+              - { label: "☀️  Jour / soleil", value: i-sun }
+              - { label: "🌙  Nuit / lune", value: i-moon }
+              - { label: "⚙️  Équipements (rouage)", value: i-gear }
+              - { label: "ℹ️  Bon à savoir (info)", value: i-info }
+              - { label: "⭐  Étoile / avis", value: i-star }
+              - { label: "👥  Capacité / personnes", value: i-users }
+              - { label: "🛟  Sécurité (bouée)", value: i-life }
+              - { label: "🐾  Animaux (patte)", value: i-paw }
+              - { label: "🚭  Non-fumeur", value: i-nosmoke }
+              - { label: "🔇  Silence / bruit", value: i-mute }
+              - { label: "📍  Localisation (épingle)", value: i-pin }
+              - { label: "🧭  Accès (boussole)", value: i-compass }
+              - { label: "✉️  Contact (enveloppe)", value: i-mail }
+          - { name: title, label: Titre, widget: string }
+          - name: text
+            label: Texte
+            widget: text
+            hint: "Une ligne = une puce sur le site. Les lignes vides sont ignorées."

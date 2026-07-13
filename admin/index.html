@@ -8,7 +8,23 @@
   </head>
   <body>
     <!-- Sveltia CMS est une application servie depuis un CDN : rien à installer.
-         Toute la configuration se trouve dans config.yml, à côté de ce fichier. -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+         Toute la configuration se trouve dans config.yml, à côté de ce fichier.
+
+         La version est FIGÉE (@0.170.8) et accompagnée de son empreinte (integrity).
+         Sans cela, l'URL redirige vers la dernière version publiée : le CMS se mettrait
+         à jour tout seul, sans relecture, alors qu'il a les droits d'écriture sur le
+         dépôt. Avec l'empreinte, le navigateur refuse d'exécuter le script si un seul
+         octet diffère — une compromission du CDN ne peut donc rien injecter.
+
+         POUR METTRE À JOUR : changez le numéro de version ci-dessous, puis recalculez
+         l'empreinte avec :
+           curl -s https://unpkg.com/@sveltia/cms@LA-VERSION/dist/sveltia-cms.js \
+             | openssl dgst -sha384 -binary | openssl base64 -A
+         Si l'empreinte ne correspond pas, le CMS ne se charge pas du tout : c'est
+         voulu, et c'est visible immédiatement. -->
+    <script
+      src="https://unpkg.com/@sveltia/cms@0.170.8/dist/sveltia-cms.js"
+      integrity="sha384-tCTgsoV7Stz/AF11t9RoI9O5HeA5wgS45u60RVDA15jeDdXvr0bya5Weuh6PVba5"
+      crossorigin="anonymous"></script>
   </body>
 </html>

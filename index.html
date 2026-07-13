@@ -18,6 +18,8 @@
      Tout le reste est modifiable directement dans ce fichier.
      ============================================================ -->
 
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
@@ -82,6 +84,11 @@ header.scrolled .menu a:not(.btn){color:var(--ink)}
 .nav-cta{display:flex;align-items:center;gap:8px;margin-left:6px}
 .menu .btn-primary{color:#fff}
 .menu .btn-out{color:var(--ink)}
+/* Au survol, .menu a:hover (specificite 0,2,1) l'emportait sur .btn-*:hover (0,2,0)
+   et repeignait le texte des boutons en sable : illisible sur le fond inverse.
+   On requalifie donc le survol des boutons DANS la nav (0,3,1) pour qu'il gagne. */
+.menu a.btn-primary:hover{color:var(--ink)}
+.menu a.btn-out:hover{color:#fff}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;padding:8px}
 .burger span{width:26px;height:2px;background:#fff;transition:.3s}
 header.scrolled .burger span{background:var(--ink)}
@@ -143,6 +150,8 @@ header.scrolled .burger span{background:var(--ink)}
 .ecard{background:var(--sand);border-radius:var(--radius);padding:28px;border:1px solid var(--line)}
 .ecard h3{font-size:1.05rem;color:var(--brand-dark);margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .ecard h3 .i,.acard h3 .i{width:20px;height:20px}
+/* Le texte d'une carte est saisi en un seul bloc dans le CMS : chaque ligne du
+   champ devient une puce (voir le rendu des equipements plus bas dans le <script>). */
 .ecard ul{list-style:none}
 .ecard li{padding:5px 0 5px 22px;position:relative;font-size:.92rem;color:#4a4a44}
 .ecard li:before{content:"›";position:absolute;left:4px;color:var(--brand);font-weight:600}
@@ -468,47 +477,8 @@ footer li{padding:3px 0}
     <p class="eyebrow">À votre</p>
     <h2 class="sec-title">Disposition</h2>
     <p class="sec-intro">Tout le nécessaire pour un séjour serein, à l'intérieur comme à l'extérieur.</p>
-    <div class="equip-grid">
-      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-pot"/></svg> Cuisine</h3><ul>
-        <li>Plaque de cuisson, four, micro-ondes</li>
-        <li>Réfrigérateur / congélateur connecté</li>
-        <li>Lave-vaisselle, petite cave à vin</li>
-        <li>Bouilloire, cafetière Twist Senséo</li>
-        <li>Vaisselle, verres et couverts complets</li>
-      </ul></div>
-      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-sofa"/></svg> Salon &amp; chambres</h3><ul>
-        <li>Salon avec TV connectée 65"</li>
-        <li>4 chambres en lit 160 cm + TV connectée</li>
-        <li>1 chambre lit 160 cm + 2 lits 90 cm</li>
-        <li>Mezzanine : banquette convertible 140 cm</li>
-        <li>Linge de lit et serviettes fournis</li>
-      </ul></div>
-      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bath"/></svg> Salles de bain</h3><ul>
-        <li>2 salles de bain, 2 WC</li>
-        <li>Lave-linge et sèche-linge</li>
-        <li>Sèche-serviettes (mode chauffage &amp; boost)</li>
-        <li>Sur demande : lit parapluie, chaise &amp; baignoire bébé</li>
-      </ul></div>
-      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-leaf"/></svg> Extérieur</h3><ul>
-        <li>Terrasse 70 m² avec pergola &amp; barbecue</li>
-        <li>Spa / jacuzzi 7 places</li>
-        <li>Préau 78 m² : bar, armoires réfrigérées, sanitaire</li>
-        <li>Pétanque, ping-pong, puissance 4 géant</li>
-        <li>Aire de jeu enfants 3–12 ans</li>
-      </ul></div>
-      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-gear"/></svg> Équipements</h3><ul>
-        <li>Climatisation réversible par pièce</li>
-        <li>WiFi fibre optique Orange</li>
-        <li>Borne de recharge véhicule électrique</li>
-        <li>2 parkings sur terrain clos de 6 000 m²</li>
-      </ul></div>
-      <div class="ecard"><h3><svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg> Bon à savoir</h3><ul>
-        <li>Logement non-fumeur</li>
-        <li>Animaux non acceptés</li>
-        <li>Non accessible aux personnes à mobilité réduite</li>
-        <li>Capacité événementielle jusqu'à 30 pers. (préau)</li>
-      </ul></div>
-    </div>
+    <!-- Les cartes viennent de equipements.json, edite depuis /admin. Ne plus coder en dur ici. -->
+    <div class="equip-grid" id="equip-grid"></div>
   </div>
 </section>
 
@@ -926,7 +896,7 @@ footer li{padding:3px 0}
     <p class="sec-intro" style="margin:34px auto 44px;max-width:560px;color:rgba(255,255,255,.7)">Réservez en quelques clics via nos plateformes partenaires, ou contactez-nous directement.</p>
     <div class="book-cta">
       <a class="btn btn-primary" id="book-airbnb" target="_blank" rel="noopener">Réserver sur Airbnb</a>
-      <a class="btn btn-out" id="book-booking" target="_blank" rel="noopener" style="background:#fff">Réserver sur Booking</a>
+      <a class="btn btn-out" id="book-booking" target="_blank" rel="noopener">Réserver sur Booking</a>
     </div>
     <div class="book-cards">
       <div class="qr-card">
@@ -1013,6 +983,46 @@ window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',wind
 var burger=document.getElementById('burger'),menu=document.getElementById('menu');
 burger.addEventListener('click',function(){menu.classList.toggle('open');});
 menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');});});
+
+// Equipements — les cartes (icone, titre, texte) viennent de equipements.json,
+// edite depuis l'interface d'administration (/admin). Ne plus coder en dur ici.
+fetch('equipements.json',{cache:'no-cache'})
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(function(data){
+    var cards=Array.isArray(data.cards)?data.cards:[];
+    var grid=document.getElementById('equip-grid');
+    grid.textContent='';
+    cards.forEach(function(c){
+      var card=document.createElement('div');card.className='ecard';
+      var h3=document.createElement('h3');
+      if(c.icon){
+        // Les icones sont celles du sprite <symbol> en haut du <body> : on reference
+        // l'identifiant choisi dans le CMS (ex. "i-pot") plutot qu'un fichier image.
+        var svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+        svg.setAttribute('class','i');
+        svg.setAttribute('aria-hidden','true');
+        svg.setAttribute('focusable','false');
+        var use=document.createElementNS('http://www.w3.org/2000/svg','use');
+        use.setAttribute('href','#'+c.icon);
+        svg.appendChild(use);h3.appendChild(svg);
+      }
+      h3.appendChild(document.createTextNode(' '+(c.title||'')));
+      // Une ligne du champ "Texte" = une puce. Les lignes vides sont ignorees,
+      // pour qu'un retour a la ligne en trop dans le CMS ne cree pas de puce fantome.
+      var ul=document.createElement('ul');
+      String(c.text||'').split('\n').forEach(function(line){
+        line=line.trim();
+        if(!line)return;
+        var li=document.createElement('li');li.textContent=line;
+        ul.appendChild(li);
+      });
+      card.appendChild(h3);card.appendChild(ul);
+      grid.appendChild(card);
+    });
+  })
+  .catch(function(err){
+    console.error('Chargement de equipements.json impossible :',err);
+  });
 
 // Gallery — la liste des photos et leurs titres viennent de gallery.json,
 // edite depuis l'interface d'administration (/admin). Ne plus coder en dur ici.
